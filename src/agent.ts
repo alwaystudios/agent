@@ -1,8 +1,8 @@
 import 'dotenv/config';
-import { ElectoralRollTool } from './tools/electoralRollTool';
 import { createToolCallingAgent, AgentExecutor } from "langchain/agents";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { LlamaLangchainChatModel } from "./lib/llmClient";
+import { McpTool } from "./tools/mcpTool";
 
 const SYSTEM_PROMPT = `
 You are a credit check agent.
@@ -13,7 +13,9 @@ You will need to check the company register for the person.
 `;
 
 export async function invoke(input: string) {
-  const tools = [new ElectoralRollTool()];
+  const tools = [
+    new McpTool('electoral_roll', 'Check the electoral roll for a person')
+  ];
   const model = new LlamaLangchainChatModel({});
   const prompt = ChatPromptTemplate.fromMessages([
     ["system", SYSTEM_PROMPT],
