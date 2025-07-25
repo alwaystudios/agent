@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { ElectoralRollRequest, ElectoralRollResponse, ElectoralRollResident } from '../types'
+import { ElectoralRollRequest, ElectoralRollResponse } from '../types'
 import { getTestData } from '../data/testData'
 
 export class CreditSafeClient {

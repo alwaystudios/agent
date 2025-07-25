@@ -1,4 +1,4 @@
-import { ElectoralRollResponse, ElectoralRollResident, CompaniesHouseDirectorResponse } from '../types';
+import { ElectoralRollResident } from '../types';
 
 export interface TestPerson {
   forename: string;

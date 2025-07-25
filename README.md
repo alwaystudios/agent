@@ -34,9 +34,9 @@
    - **Result: FAIL** ✅ Reliable
 
 ## **Matrix:**
-| Electoral Roll | Companies House | Expected | Test Case | Status |
-|----------------|-----------------|----------|-----------|---------|
-| ✅ Exact Match | ✅ Active/Clean | PASS | John Doe | ⚠️ Inconsistent |
-| ✅ Exact Match | ❌ Dissolved/Risk | FAIL | Jane Smith | ⚠️ Inconsistent |
-| ⚠️ Partial Match | ✅ Active/Clean | PASS | Bob Wilson | ✅ Reliable |
-| ❌ No Match | ❌ Dissolved/Risk | FAIL | Unknown Person | ✅ Reliable |
+| Electoral Roll | Companies House | Expected | Test Case |
+|----------------|-----------------|----------|-----------|
+| ✅ Exact Match | ✅ Active/Clean | PASS | John Doe |
+| ✅ Exact Match | ❌ Dissolved/Risk | FAIL | Jane Smith |
+| ⚠️ Partial Match | ✅ Active/Clean | PASS | Bob Wilson |
+| ❌ No Match | ❌ Dissolved/Risk | FAIL | Unknown Person |
