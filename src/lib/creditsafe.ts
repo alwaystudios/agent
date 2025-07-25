@@ -1,5 +1,6 @@
 import 'dotenv/config'
-import { ElectoralRollRequest, ElectoralRollResponse } from '../types'
+import { ElectoralRollRequest, ElectoralRollResponse, ElectoralRollResident } from '../types'
+import { getTestData } from '../data/testData'
 
 export class CreditSafeClient {
 
@@ -41,6 +42,9 @@ export class CreditSafeClient {
       products: ['Consumer']
     }
 
+    const testData = getTestData(address.forename, address.surname);
+    const residents = testData?.electoralRoll.residents || [];
+
     return {
       correlationId: '123',
       uniqueId: '123',
@@ -51,19 +55,9 @@ export class CreditSafeClient {
           reportTitle: 'Electoral Roll',
           reportType: 'Consumer', 
           address: {
-            address: '123 The Street, The City, The Postcode',
+            address: `${address.street}, ${address.city}, ${address.postCode}`,
             isCurrent: true,
-            residents: [
-              {
-                matchType: 'exact',
-                name: 'John Doe',
-                duration: '10 years',
-                startDate: '2015-01-01',
-                endDate: '2025-01-01',
-                electoralRollValid: true,
-                electoralRollHistory: []
-              }
-            ]
+            residents
           }
         }
       }
