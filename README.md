@@ -4,7 +4,6 @@
 - **Express server** with `/vetting` endpoint
 - **LangChain AI agent** makes the decisions  
 - **MCP (Model Context Protocol) server** provides tools
-- **Local Llama3.2 LLM** powers the reasoning (docker)
 
 🔍 **How it works**:
 1. POST `/vetting`
