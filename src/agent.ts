@@ -1,12 +1,10 @@
 import 'dotenv/config';
 import { createToolCallingAgent, AgentExecutor } from "langchain/agents";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
-import { llm } from "./lib/llmClient";
+import { gptTurbo as llm } from "./lib/llmClient";
 import { McpTool } from "./tools/mcpTool";
 import { cleanAndValidateOutput } from "./lib/outputParser";
 import { promiseRetry } from "./lib/promiseRetry";
-
-process.env.LANGCHAIN_VERBOSE = 'true';
 
 const SYSTEM_PROMPT = `
 You are a director vetting agent. Follow the steps and rules below **EXACTLY** and in order.

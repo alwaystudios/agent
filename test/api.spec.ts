@@ -1,6 +1,6 @@
 import { test, expect, APIRequestContext } from '@playwright/test'
 
-const baseURL = process.env.API_BASE_URL || 'http://localhost:3000'
+const baseURL = 'http://localhost:3000'
 
 test('GET /mcp returns tool manifest', async ({ request }: { request: APIRequestContext }) => {
   const res = await request.get(`${baseURL}/mcp`)
@@ -159,4 +159,16 @@ test('FAIL: Not found on electoral roll + dissolved companies (Unknown Person)',
   expect(typeof result.reason).toBe('string')
   expect(typeof result.summary).toBe('string')
   expect(result.pass).toBe(false)
+}) 
+
+test('POST /chat returns LLM response', async ({ request }: { request: APIRequestContext }) => {
+  const res = await request.post(`${baseURL}/chat`, {
+    data: { prompt: "what's the capital of the UK?" }
+  })
+  expect(res.ok()).toBeTruthy()
+  const data = await res.json()
+  expect(data.output).toBeDefined()
+  expect(typeof data.output).toBe('string')
+  expect(data.output.length).toBeGreaterThan(0)
+  expect(data.output.toUpperCase()).toContain('LONDON')
 }) 

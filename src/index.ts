@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express'
 import { ElectoralRollTool } from './tools/electoralRollTool'
 import { CompaniesHouseTool } from './tools/companiesHouseTool'
 import { invoke } from './agent'
+import { chatLLM } from './chat'
 
 const app = express()
 app.use(express.json())
@@ -50,6 +51,16 @@ app.post('/vetting', async (req: Request, res: Response) => {
   const { name, dob, companyName } = req.body
   const prompt = `Vetting check for director: Name: ${name}, DOB: ${dob}, Company: ${companyName}`
   const output = await invoke(prompt)
+  res.json({ output })
+})
+
+app.post('/chat', async (req: Request, res: Response) => {
+  const { prompt } = req.body
+  if (!prompt) {
+    res.status(400).json({ error: 'Missing prompt' })
+    return
+  }
+  const output = await chatLLM(prompt)
   res.json({ output })
 })
 

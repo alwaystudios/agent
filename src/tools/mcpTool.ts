@@ -1,8 +1,5 @@
 import { Tool } from "langchain/tools";
 import axios from 'axios';
-
-const MCP_URL = process.env.MCP_PROXY_URL;
-
 export class McpTool extends Tool {
   name: string;
   description: string;
@@ -12,7 +9,7 @@ export class McpTool extends Tool {
     this.description = toolDescription;
   }
   async _call(input: string) {
-    const res = await axios.post(`${MCP_URL}/mcp`, { tool: this.name, input: JSON.parse(input) });
+    const res = await axios.post(`${process.env.MCP_PROXY_URL}/mcp`, { tool: this.name, input: JSON.parse(input) });
     return res.data.result;
   }
 } 
